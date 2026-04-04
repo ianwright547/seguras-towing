@@ -1,0 +1,18 @@
+export const serviceAreas = [
+  { name: 'Inglewood', primary: true },
+  { name: 'Hawthorne', primary: false },
+  { name: 'Lennox', primary: false },
+  { name: 'Westchester', primary: false },
+  { name: 'Ladera Heights', primary: false },
+  { name: 'View Park', primary: false },
+  { name: 'Hyde Park', primary: false },
+  { name: 'Gardena', primary: false },
+  { name: 'Lawndale', primary: false },
+  { name: 'El Segundo', primary: false },
+  { name: 'Manhattan Beach', primary: false },
+  { name: 'Redondo Beach', primary: false },
+  { name: 'Torrance', primary: false },
+  { name: 'Culver City', primary: false },
+  { name: 'South LA', primary: false },
+  { name: 'LAX Area', primary: false },
+];

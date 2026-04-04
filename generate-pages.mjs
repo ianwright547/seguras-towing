@@ -1,0 +1,246 @@
+/**
+ * Post-build script: generates route-specific HTML files with proper
+ * meta tags, JSON-LD structured data, and noscript fallback content
+ * so that AI crawlers and search engines can index every page.
+ *
+ * Run after `vite build`:  node generate-pages.mjs
+ */
+
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const distDir = resolve(__dirname, 'dist');
+
+if (!existsSync(distDir)) {
+  console.error('Error: dist/ directory not found. Run "vite build" first.');
+  process.exit(1);
+}
+
+const template = readFileSync(resolve(distDir, 'index.html'), 'utf-8');
+
+const SITE = 'https://segurastowing.com';
+const BIZ = "Segura's Towing";
+const PHONE = '(310) 490-0246';
+const TEL = 'tel:+13104900246';
+const ADDR = '3519 W 108th St, Inglewood, CA 90303';
+
+const provider = {
+  '@type': 'TowingService',
+  name: BIZ,
+  telephone: '+1-310-490-0246',
+  url: SITE,
+};
+
+// ── Route definitions ──────────────────────────────────────────────
+
+const pages = [
+  // ─ Static pages ─
+  {
+    path: '/about',
+    title: `About Us | ${BIZ} | Inglewood, CA`,
+    desc: `Family-owned since 2010, ${BIZ} has served Inglewood and South LA for over 15 years. Three generations of reliable, honest towing service.`,
+    noscriptHeading: `About ${BIZ}`,
+    noscriptBody: 'Family-owned since 2010. Three generations of reliable, honest towing in Inglewood, CA. Over 10,000 vehicles towed. Modern flatbed fleet. Certified operators.',
+  },
+  {
+    path: '/contact',
+    title: `Contact Us | ${BIZ} | Inglewood, CA`,
+    desc: `Contact ${BIZ} in Inglewood, CA. Call ${PHONE} for 24/7 towing and roadside assistance. ${ADDR}.`,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      mainEntity: { '@id': `${SITE}/#business` },
+    },
+    noscriptHeading: `Contact ${BIZ}`,
+    noscriptBody: `Phone: ${PHONE}. Address: ${ADDR}. Hours: 24/7, 365 days a year. We answer every call.`,
+  },
+  {
+    path: '/service-areas',
+    title: `Service Areas | ${BIZ} | Inglewood & South LA`,
+    desc: `${BIZ} serves Inglewood, Hawthorne, Lennox, Westchester, Gardena, Lawndale, El Segundo, Manhattan Beach, Torrance, Culver City, and all of South LA. 15-30 min response.`,
+    noscriptHeading: `${BIZ} Service Areas`,
+    noscriptBody: 'Serving Inglewood, Hawthorne, Lennox, Westchester, Ladera Heights, Gardena, Lawndale, El Segundo, Manhattan Beach, Torrance, Culver City, South LA, and the LAX area. Average response: 15-30 minutes.',
+  },
+
+  {
+    path: '/services',
+    title: `Our Services | ${BIZ} | 24/7 Towing & Roadside Assistance`,
+    desc: `${BIZ} offers 24/7 emergency towing, flatbed towing, roadside assistance, lockout service, jump starts, and accident recovery in Inglewood, CA and the South Bay.`,
+    noscriptHeading: `${BIZ} Services`,
+    noscriptBody: '<ul><li><a href="/services/emergency-towing">Emergency Towing</a> — 24/7 fast dispatch</li><li><a href="/services/flatbed-towing">Flatbed Towing</a> — Safe vehicle transport</li><li><a href="/services/roadside-assistance">Roadside Assistance</a></li><li><a href="/services/lockout-service">Lockout Service</a></li><li><a href="/services/jump-start">Jump Start</a></li><li><a href="/services/accident-recovery">Accident Recovery</a></li></ul>',
+  },
+
+  // ─ Service pages ─
+  {
+    path: '/services/emergency-towing',
+    title: `Emergency Towing | 24/7 Tow Truck | ${BIZ} Inglewood`,
+    desc: `Need an emergency tow in Inglewood? ${BIZ} provides 24/7 emergency towing with 15-30 min response times across the South Bay. Call ${PHONE}.`,
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Emergency Towing', provider, areaServed: 'Inglewood, CA and surrounding areas', description: '24/7 emergency towing service with 15-30 minute average response time. Flatbed and wheel-lift trucks dispatched immediately.' },
+    noscriptHeading: 'Emergency Towing in Inglewood, CA',
+    noscriptBody: '24/7 emergency towing with 15-30 minute response. We dispatch immediately after your call. Flatbed and wheel-lift trucks available.',
+  },
+  {
+    path: '/services/flatbed-towing',
+    title: `Flatbed Towing | Safe Vehicle Transport | ${BIZ} Inglewood`,
+    desc: `Professional flatbed towing in Inglewood, CA. Safe transport for all vehicles including luxury, AWD, and low-clearance cars. Call ${PHONE}.`,
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Flatbed Towing', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Professional flatbed towing for safe, damage-free transport of all vehicle types including luxury, AWD, and low-clearance vehicles.' },
+    noscriptHeading: 'Flatbed Towing in Inglewood, CA',
+    noscriptBody: 'Safe, damage-free flatbed transport for all vehicle types. Ideal for luxury cars, AWD vehicles, and low-clearance sports cars.',
+  },
+  {
+    path: '/services/roadside-assistance',
+    title: `Roadside Assistance | 24/7 Help | ${BIZ} Inglewood`,
+    desc: `24/7 roadside assistance in Inglewood, CA. Flat tires, dead battery, locked out, fuel delivery. ${BIZ} responds in 15-30 min. Call ${PHONE}.`,
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Roadside Assistance', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Comprehensive 24/7 roadside assistance including flat tire changes, battery jump starts, fuel delivery, and lockout service.' },
+    noscriptHeading: 'Roadside Assistance in Inglewood, CA',
+    noscriptBody: 'Flat tire, dead battery, out of gas, locked out? Our roadside assistance team responds 24/7 in 15-30 minutes.',
+  },
+  {
+    path: '/services/lockout-service',
+    title: `Lockout Service | Car Unlock | ${BIZ} Inglewood`,
+    desc: `Locked out of your car in Inglewood? ${BIZ} provides fast, damage-free lockout service 24/7. Back in your car in minutes. Call ${PHONE}.`,
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Lockout Service', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Fast, damage-free car lockout service available 24/7. Professional tools ensure no damage to your vehicle.' },
+    noscriptHeading: 'Car Lockout Service in Inglewood, CA',
+    noscriptBody: 'Locked out of your car? We provide fast, damage-free lockout service 24/7. Professional tools, no damage to your vehicle.',
+  },
+  {
+    path: '/services/jump-start',
+    title: `Jump Start Service | Dead Battery Help | ${BIZ} Inglewood`,
+    desc: `Dead battery in Inglewood? ${BIZ} provides fast jump start service 24/7. Back on the road in minutes. Call ${PHONE}.`,
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Jump Start Service', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Fast jump start service for dead batteries, available 24/7. Get back on the road in minutes.' },
+    noscriptHeading: 'Jump Start Service in Inglewood, CA',
+    noscriptBody: 'Dead battery? Our jump start service gets you back on the road in minutes. Available 24/7 across Inglewood and the South Bay.',
+  },
+  {
+    path: '/services/accident-recovery',
+    title: `Accident Recovery | Vehicle Recovery | ${BIZ} Inglewood`,
+    desc: `Professional accident recovery in Inglewood, CA. ${BIZ} handles vehicle recovery and accident scene assistance 24/7. Call ${PHONE}.`,
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Accident Recovery', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Professional accident recovery and vehicle retrieval services. We work with insurance companies and law enforcement.' },
+    noscriptHeading: 'Accident Recovery in Inglewood, CA',
+    noscriptBody: 'Professional accident scene vehicle recovery. We work with insurance and law enforcement. Safe vehicle retrieval 24/7.',
+  },
+
+  // ─ Blog ─
+  {
+    path: '/blog',
+    title: `Blog | Towing Tips & Road Safety | ${BIZ}`,
+    desc: `Towing tips, roadside safety guides, and expert advice from ${BIZ}. Learn what to do after an accident, how to choose a towing company, and more.`,
+    noscriptHeading: `${BIZ} Blog`,
+    noscriptBody: '<ul><li><a href="/blog/what-to-do-after-car-accident-inglewood">What to Do After a Car Accident in Inglewood</a></li><li><a href="/blog/how-to-choose-towing-company-los-angeles">How to Choose a Towing Company in Los Angeles</a></li><li><a href="/blog/roadside-emergency-kit-checklist">Roadside Emergency Kit Checklist</a></li><li><a href="/blog/flatbed-vs-wheel-lift-towing-which-is-better">Flatbed vs. Wheel-Lift Towing: Which Is Better?</a></li></ul>',
+  },
+  {
+    path: '/blog/what-to-do-after-car-accident-inglewood',
+    title: `What to Do After a Car Accident in Inglewood | ${BIZ}`,
+    desc: 'Step-by-step guide on what to do after a car accident in Inglewood, CA. Safety tips, insurance steps, and when to call a tow truck.',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: 'What to Do After a Car Accident in Inglewood', datePublished: '2025-01-15', author: { '@type': 'Organization', name: BIZ }, publisher: { '@type': 'Organization', name: BIZ, url: SITE } },
+    noscriptHeading: 'What to Do After a Car Accident in Inglewood',
+    noscriptBody: 'A step-by-step guide to staying safe and handling the aftermath of a car accident in Inglewood, CA.',
+  },
+  {
+    path: '/blog/how-to-choose-towing-company-los-angeles',
+    title: `How to Choose a Towing Company in Los Angeles | ${BIZ}`,
+    desc: 'Tips for choosing a reliable towing company in Los Angeles. What to look for, red flags to avoid, and why local matters.',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: 'How to Choose a Towing Company in Los Angeles', datePublished: '2025-02-01', author: { '@type': 'Organization', name: BIZ }, publisher: { '@type': 'Organization', name: BIZ, url: SITE } },
+    noscriptHeading: 'How to Choose a Towing Company in Los Angeles',
+    noscriptBody: 'Expert tips for finding a trustworthy, reliable towing company in the Los Angeles area.',
+  },
+  {
+    path: '/blog/roadside-emergency-kit-checklist',
+    title: `Roadside Emergency Kit Checklist | ${BIZ}`,
+    desc: 'Essential items for your roadside emergency kit. Be prepared for breakdowns, flat tires, and other road emergencies.',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: 'Roadside Emergency Kit Checklist', datePublished: '2025-02-15', author: { '@type': 'Organization', name: BIZ }, publisher: { '@type': 'Organization', name: BIZ, url: SITE } },
+    noscriptHeading: 'Roadside Emergency Kit Checklist',
+    noscriptBody: 'Essential items every driver should keep in their car for roadside emergencies.',
+  },
+  {
+    path: '/blog/flatbed-vs-wheel-lift-towing-which-is-better',
+    title: `Flatbed vs. Wheel-Lift Towing: Which Is Better? | ${BIZ}`,
+    desc: 'Compare flatbed and wheel-lift towing methods. Learn which is safer for your vehicle and when each is the right choice.',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: 'Flatbed vs. Wheel-Lift Towing: Which Is Better?', datePublished: '2025-03-01', author: { '@type': 'Organization', name: BIZ }, publisher: { '@type': 'Organization', name: BIZ, url: SITE } },
+    noscriptHeading: 'Flatbed vs. Wheel-Lift Towing: Which Is Better?',
+    noscriptBody: 'A comparison of the two most common towing methods and when each is the right choice for your vehicle.',
+  },
+];
+
+// ── Helpers ─────────────────────────────────────────────────────────
+
+function esc(str) {
+  return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
+
+function breadcrumb(path) {
+  const parts = path.split('/').filter(Boolean);
+  if (!parts.length) return null;
+  const items = [{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE }];
+  let cur = '';
+  parts.forEach((p, i) => {
+    cur += '/' + p;
+    items.push({
+      '@type': 'ListItem',
+      position: i + 2,
+      name: p.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' '),
+      item: SITE + cur,
+    });
+  });
+  return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items };
+}
+
+function noscriptBlock(heading, body) {
+  return `
+    <noscript>
+      <div style="max-width:800px;margin:40px auto;padding:20px;font-family:system-ui,sans-serif">
+        <h1>${heading}</h1>
+        <p>${body}</p>
+        <p><strong>Call now: <a href="${TEL}">${PHONE}</a></strong></p>
+        <p>Address: ${ADDR} — Open 24/7</p>
+        <nav style="margin-top:20px">
+          <a href="/">Home</a> | <a href="/about">About</a> | <a href="/contact">Contact</a> |
+          <a href="/service-areas">Areas</a> | <a href="/blog">Blog</a>
+        </nav>
+      </div>
+    </noscript>`;
+}
+
+// ── Generate ────────────────────────────────────────────────────────
+
+console.log('Generating SEO pages...');
+
+for (const page of pages) {
+  let html = template;
+
+  // Meta tags
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(page.title)}</title>`);
+  html = html.replace(/<meta name="description" content="[^"]*"/, `<meta name="description" content="${esc(page.desc)}"`);
+  html = html.replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="${SITE}${page.path}"`);
+  html = html.replace(/<meta property="og:title" content="[^"]*"/, `<meta property="og:title" content="${esc(page.title)}"`);
+  html = html.replace(/<meta property="og:description" content="[^"]*"/, `<meta property="og:description" content="${esc(page.desc)}"`);
+  html = html.replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${SITE}${page.path}"`);
+  html = html.replace(/<meta name="twitter:title" content="[^"]*"/, `<meta name="twitter:title" content="${esc(page.title)}"`);
+  html = html.replace(/<meta name="twitter:description" content="[^"]*"/, `<meta name="twitter:description" content="${esc(page.desc)}"`);
+
+  // Page-specific JSON-LD
+  if (page.jsonLd) {
+    html = html.replace('</head>', `    <script type="application/ld+json">\n    ${JSON.stringify(page.jsonLd)}\n    </script>\n  </head>`);
+  }
+
+  // Breadcrumb JSON-LD
+  const bc = breadcrumb(page.path);
+  if (bc) {
+    html = html.replace('</head>', `    <script type="application/ld+json">\n    ${JSON.stringify(bc)}\n    </script>\n  </head>`);
+  }
+
+  // Replace noscript content
+  if (page.noscriptHeading) {
+    html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, noscriptBlock(page.noscriptHeading, page.noscriptBody));
+  }
+
+  // Write file
+  const dir = resolve(distDir, page.path.slice(1));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, 'index.html'), html);
+  console.log(`  \u2713 ${page.path}`);
+}
+
+console.log(`\nDone — ${pages.length} route-specific HTML files generated.`);

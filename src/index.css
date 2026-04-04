@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Variable.woff2') format('woff2');
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@theme {
+  --color-brand-blue: #0A1B3F;
+  --color-brand-blue-hover: #050D21;
+  --color-brand-blue-light: #E0E7FF;
+  --color-brand-orange: #FF5A00;
+  --color-brand-orange-hover: #D44700;
+  --color-brand-dark: #000000;
+  --color-brand-dark-lighter: #111111;
+  --color-brand-dark-card: #1A1A1A;
+  --color-brand-dark-elevated: #222222;
+  --color-surface-off: #F4F4F4;
+  --color-surface-light: #FAFAFA;
+  --color-surface-cream: #FFFFFF;
+  --color-text-primary: #111111;
+  --color-text-secondary: #555555;
+  --color-status-available: #16A34A;
+
+  --font-sans: 'Satoshi', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Satoshi', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    background: #FFFFFF;
+  }
+}
+
+/* Hard utilities to enforce non-vibe-coded aesthetic */
+.animate-fade-up {
+  opacity: 1;
+}
+
+.animate-fade-in {
+  opacity: 1;
+}
+
+.animate-slide-in {
+  opacity: 1;
+}
+
+.animation-delay-200,
+.animation-delay-400,
+.animation-delay-600,
+.animation-delay-800,
+.animation-delay-1000 {
+  animation-delay: 0s;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 90s linear infinite;
+}
