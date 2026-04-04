@@ -77,7 +77,9 @@ const pages = [
     path: '/services/emergency-towing',
     title: `Emergency Towing | 24/7 Tow Truck | ${BIZ} Inglewood`,
     desc: `Need an emergency tow in Inglewood? ${BIZ} provides 24/7 emergency towing with 15-30 min response times across the South Bay. Call ${PHONE}.`,
-    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Emergency Towing', provider, areaServed: 'Inglewood, CA and surrounding areas', description: '24/7 emergency towing service with 15-30 minute average response time. Flatbed and wheel-lift trucks dispatched immediately.' },
+    ogImage: '/images/real-tow-23.jpeg',
+    ogImageAlt: 'Emergency towing service by Segura\'s Towing in Inglewood, CA',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Emergency Towing', provider, areaServed: 'Inglewood, CA and surrounding areas', description: '24/7 emergency towing service with 15-30 minute average response time. Flatbed and wheel-lift trucks dispatched immediately.', image: `${SITE}/images/real-tow-23.jpeg` },
     noscriptHeading: 'Emergency Towing in Inglewood, CA',
     noscriptBody: '24/7 emergency towing with 15-30 minute response. We dispatch immediately after your call. Flatbed and wheel-lift trucks available.',
   },
@@ -85,7 +87,9 @@ const pages = [
     path: '/services/flatbed-towing',
     title: `Flatbed Towing | Safe Vehicle Transport | ${BIZ} Inglewood`,
     desc: `Professional flatbed towing in Inglewood, CA. Safe transport for all vehicles including luxury, AWD, and low-clearance cars. Call ${PHONE}.`,
-    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Flatbed Towing', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Professional flatbed towing for safe, damage-free transport of all vehicle types including luxury, AWD, and low-clearance vehicles.' },
+    ogImage: '/images/real-tow-5.jpeg',
+    ogImageAlt: 'Flatbed towing service by Segura\'s Towing in Inglewood, CA',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Flatbed Towing', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Professional flatbed towing for safe, damage-free transport of all vehicle types including luxury, AWD, and low-clearance vehicles.', image: `${SITE}/images/real-tow-5.jpeg` },
     noscriptHeading: 'Flatbed Towing in Inglewood, CA',
     noscriptBody: 'Safe, damage-free flatbed transport for all vehicle types. Ideal for luxury cars, AWD vehicles, and low-clearance sports cars.',
   },
@@ -93,7 +97,9 @@ const pages = [
     path: '/services/roadside-assistance',
     title: `Roadside Assistance | 24/7 Help | ${BIZ} Inglewood`,
     desc: `24/7 roadside assistance in Inglewood, CA. Flat tires, dead battery, locked out, fuel delivery. ${BIZ} responds in 15-30 min. Call ${PHONE}.`,
-    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Roadside Assistance', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Comprehensive 24/7 roadside assistance including flat tire changes, battery jump starts, fuel delivery, and lockout service.' },
+    ogImage: '/images/real-tow-21.jpeg',
+    ogImageAlt: 'Roadside assistance by Segura\'s Towing in Inglewood, CA',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Roadside Assistance', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Comprehensive 24/7 roadside assistance including flat tire changes, battery jump starts, fuel delivery, and lockout service.', image: `${SITE}/images/real-tow-21.jpeg` },
     noscriptHeading: 'Roadside Assistance in Inglewood, CA',
     noscriptBody: 'Flat tire, dead battery, out of gas, locked out? Our roadside assistance team responds 24/7 in 15-30 minutes.',
   },
@@ -101,7 +107,9 @@ const pages = [
     path: '/services/lockout-service',
     title: `Lockout Service | Car Unlock | ${BIZ} Inglewood`,
     desc: `Locked out of your car in Inglewood? ${BIZ} provides fast, damage-free lockout service 24/7. Back in your car in minutes. Call ${PHONE}.`,
-    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Lockout Service', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Fast, damage-free car lockout service available 24/7. Professional tools ensure no damage to your vehicle.' },
+    ogImage: '/images/truck-sedan-apartments.jpg',
+    ogImageAlt: 'Car lockout service by Segura\'s Towing in Inglewood, CA',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Lockout Service', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Fast, damage-free car lockout service available 24/7. Professional tools ensure no damage to your vehicle.', image: `${SITE}/images/truck-sedan-apartments.jpg` },
     noscriptHeading: 'Car Lockout Service in Inglewood, CA',
     noscriptBody: 'Locked out of your car? We provide fast, damage-free lockout service 24/7. Professional tools, no damage to your vehicle.',
   },
@@ -109,7 +117,9 @@ const pages = [
     path: '/services/jump-start',
     title: `Jump Start Service | Dead Battery Help | ${BIZ} Inglewood`,
     desc: `Dead battery in Inglewood? ${BIZ} provides fast jump start service 24/7. Back on the road in minutes. Call ${PHONE}.`,
-    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Jump Start Service', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Fast jump start service for dead batteries, available 24/7. Get back on the road in minutes.' },
+    ogImage: '/images/truck-chevy-tow.jpg',
+    ogImageAlt: 'Jump start service by Segura\'s Towing in Inglewood, CA',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Jump Start Service', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Fast jump start service for dead batteries, available 24/7. Get back on the road in minutes.', image: `${SITE}/images/truck-chevy-tow.jpg` },
     noscriptHeading: 'Jump Start Service in Inglewood, CA',
     noscriptBody: 'Dead battery? Our jump start service gets you back on the road in minutes. Available 24/7 across Inglewood and the South Bay.',
   },
@@ -117,7 +127,9 @@ const pages = [
     path: '/services/accident-recovery',
     title: `Accident Recovery | Vehicle Recovery | ${BIZ} Inglewood`,
     desc: `Professional accident recovery in Inglewood, CA. ${BIZ} handles vehicle recovery and accident scene assistance 24/7. Call ${PHONE}.`,
-    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Accident Recovery', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Professional accident recovery and vehicle retrieval services. We work with insurance companies and law enforcement.' },
+    ogImage: '/images/real-tow-10.jpeg',
+    ogImageAlt: 'Accident recovery service by Segura\'s Towing in Inglewood, CA',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Accident Recovery', provider, areaServed: 'Inglewood, CA and surrounding areas', description: 'Professional accident recovery and vehicle retrieval services. We work with insurance companies and law enforcement.', image: `${SITE}/images/real-tow-10.jpeg` },
     noscriptHeading: 'Accident Recovery in Inglewood, CA',
     noscriptBody: 'Professional accident scene vehicle recovery. We work with insurance and law enforcement. Safe vehicle retrieval 24/7.',
   },
@@ -219,6 +231,16 @@ for (const page of pages) {
   html = html.replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${SITE}${page.path}"`);
   html = html.replace(/<meta name="twitter:title" content="[^"]*"/, `<meta name="twitter:title" content="${esc(page.title)}"`);
   html = html.replace(/<meta name="twitter:description" content="[^"]*"/, `<meta name="twitter:description" content="${esc(page.desc)}"`);
+
+  // OG image — use page-specific image or keep default
+  if (page.ogImage) {
+    html = html.replace(/<meta property="og:image" content="[^"]*"/, `<meta property="og:image" content="${SITE}${page.ogImage}"`);
+    html = html.replace(/<meta name="twitter:image" content="[^"]*"/, `<meta name="twitter:image" content="${SITE}${page.ogImage}"`);
+    if (page.ogImageAlt) {
+      html = html.replace(/<meta property="og:image:alt" content="[^"]*"/, `<meta property="og:image:alt" content="${esc(page.ogImageAlt)}"`);
+      html = html.replace(/<meta name="twitter:image:alt" content="[^"]*"/, `<meta name="twitter:image:alt" content="${esc(page.ogImageAlt)}"`);
+    }
+  }
 
   // Page-specific JSON-LD
   if (page.jsonLd) {

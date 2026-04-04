@@ -29,8 +29,8 @@ export default function Hero() {
 
           {/* Left Column - Sales Copy */}
           <div className="flex-1 text-center lg:text-left">
-            <div className="inline-block bg-brand-orange text-white font-bold tracking-[0.2em] text-xs uppercase px-4 py-2 mb-8 border-2 border-orange-600">
-              24/7 Emergency Dispatch Available Now
+            <div className="inline-block bg-brand-orange text-white font-bold tracking-widest text-[11px] sm:text-xs uppercase px-3 sm:px-4 py-2 mb-8 border-2 border-orange-600">
+              24/7 Emergency Dispatch
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] uppercase tracking-tighter mb-6 lg:mb-8">
               24/7 Towing in <span className="text-brand-orange">Inglewood, CA.</span> Fast & Safe.

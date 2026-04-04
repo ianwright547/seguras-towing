@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 
-export default function SEOHead({ title, description, canonical }) {
+const SITE = 'https://segurastowing.com';
+const DEFAULT_OG_IMAGE = `${SITE}/images/truck-branded-side.jpg`;
+const DEFAULT_OG_IMAGE_ALT = "Segura's Towing truck - 24/7 Towing Service in Inglewood, CA";
+
+export default function SEOHead({ title, description, canonical, ogImage, ogImageAlt }) {
   useEffect(() => {
     document.title = title
       ? `${title} | Segura's Towing | Inglewood, CA`
@@ -29,9 +33,12 @@ export default function SEOHead({ title, description, canonical }) {
     if (description) {
       setMeta('description', description);
       setOG('og:description', description);
+      setMeta('twitter:description', description);
     }
     if (title) {
-      setOG('og:title', `${title} | Segura's Towing`);
+      const fullTitle = `${title} | Segura's Towing`;
+      setOG('og:title', fullTitle);
+      setMeta('twitter:title', fullTitle);
     }
     if (canonical) {
       let link = document.querySelector('link[rel="canonical"]');
@@ -40,10 +47,18 @@ export default function SEOHead({ title, description, canonical }) {
         link.setAttribute('rel', 'canonical');
         document.head.appendChild(link);
       }
-      link.setAttribute('href', `https://segurastowing.com${canonical}`);
-      setOG('og:url', `https://segurastowing.com${canonical}`);
+      link.setAttribute('href', `${SITE}${canonical}`);
+      setOG('og:url', `${SITE}${canonical}`);
     }
-  }, [title, description, canonical]);
+
+    // OG Image — use page-specific image or fall back to default
+    const imageUrl = ogImage ? `${SITE}${ogImage}` : DEFAULT_OG_IMAGE;
+    const imageAlt = ogImageAlt || DEFAULT_OG_IMAGE_ALT;
+    setOG('og:image', imageUrl);
+    setOG('og:image:alt', imageAlt);
+    setMeta('twitter:image', imageUrl);
+    setMeta('twitter:image:alt', imageAlt);
+  }, [title, description, canonical, ogImage, ogImageAlt]);
 
   return null;
 }

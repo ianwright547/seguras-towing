@@ -11,8 +11,8 @@ import FinalCTA from '../components/sections/FinalCTA';
 export default function Home() {
   return (
     <>
-      <SEOHead 
-        title="24/7 Towing Service in Inglewood, CA | Segura's Towing"
+      <SEOHead
+        title="24/7 Towing Service in Inglewood, CA"
         description="Fast, reliable towing and roadside assistance in Inglewood. 24/7 emergency dispatch, upfront pricing, and a trusted local team. Call (310) 490-0246 now."
         canonical="/"
       />

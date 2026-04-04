@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
+# Sitemap
 Sitemap: https://segurastowing.com/sitemap.xml
+
+# Crawl-delay (optional, be kind to the server)
+Crawl-delay: 1

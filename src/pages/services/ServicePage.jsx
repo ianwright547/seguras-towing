@@ -18,6 +18,8 @@ export default function ServicePage({ service }) {
         title={service.metaTitle}
         description={service.metaDesc}
         canonical={`/services/${service.slug}`}
+        ogImage={service.heroPhoto}
+        ogImageAlt={`${service.title} by Segura's Towing in Inglewood, CA`}
       />
 
       {/* ── Landing Page Style Hero ── */}
