@@ -1,5 +1,5 @@
 // ── Paste your webhook URL here ──
-const WEBHOOK_URL = 'https://hook.us2.make.com/5oin8lq4v58fwp8qvqii23zoapk0o9h6';
+const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/Y7wOLPd7DJ1UPHzcD8hG/webhook-trigger/3c86fc69-2d9b-4239-b509-55ff0daef5f9';
 
 export async function submitForm(data) {
   const payload = {
