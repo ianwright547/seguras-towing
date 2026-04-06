@@ -1,20 +1,24 @@
-// ── Paste your webhook URL here ──
-const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/Y7wOLPd7DJ1UPHzcD8hG/webhook-trigger/3c86fc69-2d9b-4239-b509-55ff0daef5f9';
+// Posts through our own /api/send-quote backend so the browser never has to
+// talk to the LeadConnector hook directly (LeadConnector doesn't send CORS
+// headers, which causes browser submissions to fail). The server-side handler
+// in api/send-quote.js forwards the lead to LeadConnector.
+const ENDPOINT = '/api/send-quote';
 
 export async function submitForm(data) {
   const payload = {
     name: data.name?.trim(),
     phone: data.phone?.trim(),
     service: data.service || data.servicePageTitle || 'Not specified',
+    servicePageTitle: data.servicePageTitle || '',
     message: data.message || '',
-    source: data.formType || 'website',
+    formType: data.formType || 'website',
     timestamp: new Date().toISOString(),
     page_url: window.location.href,
   };
 
   let res;
   try {
-    res = await fetch(WEBHOOK_URL, {
+    res = await fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
