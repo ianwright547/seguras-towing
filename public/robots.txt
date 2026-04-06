@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Allow: /api/business-info
 
 # Sitemap
 Sitemap: https://segurastowing.com/sitemap.xml
