@@ -26,11 +26,9 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Please enter a valid phone number' });
     }
 
-    const WEBHOOK_URL = process.env.WEBHOOK_URL;
-    if (!WEBHOOK_URL) {
-      console.error('WEBHOOK_URL environment variable is not set');
-      return res.status(500).json({ error: 'Server configuration error. Please call us directly at (310) 490-0246.' });
-    }
+    const WEBHOOK_URL =
+      process.env.WEBHOOK_URL ||
+      'https://services.leadconnectorhq.com/hooks/Y7wOLPd7DJ1UPHzcD8hG/webhook-trigger/3c86fc69-2d9b-4239-b509-55ff0daef5f9';
 
     // Build payload
     const payload = {
