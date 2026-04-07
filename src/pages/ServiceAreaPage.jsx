@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Phone, MapPin, Clock, CheckCircle, ArrowRight, Loader2, Truck, Wrench, Siren, KeyRound, Zap, ShieldCheck, Star } from 'lucide-react';
 import SEOHead from '../components/ui/SEOHead';
+import Breadcrumbs from '../components/ui/Breadcrumbs';
 import { PHONE_HREF, PHONE_NUMBER } from '../components/ui/PhoneLink';
 import { useFormSubmit } from '../hooks/useFormSubmit';
 import { serviceAreas } from '../data/serviceAreas';
@@ -132,6 +133,13 @@ export default function ServiceAreaPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs
+        items={[
+          { label: 'Service Areas', to: '/service-areas' },
+          { label: area.name },
+        ]}
+      />
 
       {/* ── Why Local ── */}
       <section className="bg-zinc-100 border-b-[8px] border-zinc-200 py-20 sm:py-28">

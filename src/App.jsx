@@ -12,7 +12,13 @@ import RoadsideAssistance from './pages/services/RoadsideAssistance';
 import LockoutService from './pages/services/LockoutService';
 import JumpStart from './pages/services/JumpStart';
 import AccidentRecovery from './pages/services/AccidentRecovery';
+import MotorcycleTowing from './pages/services/MotorcycleTowing';
+import FuelDelivery from './pages/services/FuelDelivery';
+import TireChange from './pages/services/TireChange';
+import BatteryInstallation from './pages/services/BatteryInstallation';
+import Winching from './pages/services/Winching';
 import ServicesPage from './pages/ServicesPage';
+import NotFound from './pages/NotFound';
 import BlogIndex from './pages/blog/BlogIndex';
 import BlogPost from './pages/blog/BlogPost';
 
@@ -42,8 +48,14 @@ export default function App() {
           <Route path="/services/lockout-service" element={<LockoutService />} />
           <Route path="/services/jump-start" element={<JumpStart />} />
           <Route path="/services/accident-recovery" element={<AccidentRecovery />} />
+          <Route path="/services/motorcycle-towing" element={<MotorcycleTowing />} />
+          <Route path="/services/fuel-delivery" element={<FuelDelivery />} />
+          <Route path="/services/tire-change" element={<TireChange />} />
+          <Route path="/services/battery-installation" element={<BatteryInstallation />} />
+          <Route path="/services/winching" element={<Winching />} />
           <Route path="/blog" element={<BlogIndex />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>

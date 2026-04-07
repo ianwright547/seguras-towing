@@ -52,7 +52,7 @@ export const blogPosts = [
       { type: 'p', text: "National roadside assistance programs often subcontract to the cheapest available operator - you have no idea who's showing up. Local companies have their reputation on the line. They know the streets, they know the traffic patterns, and they'll still be here tomorrow if something goes wrong." },
       { type: 'h2', text: 'Fair Pricing in Los Angeles' },
       { type: 'p', text: "As of 2026, fair rates for towing in the Los Angeles area range from around $75-$150 for a local tow (under 10 miles), with per-mile charges beyond that. Flatbed towing is slightly higher. Be suspicious of anyone quoting significantly above or below these ranges." },
-      { type: 'callout', text: "Segura's Towing has been serving Inglewood since 2010 with upfront pricing and 4.9-star reviews. Call (310) 490-0246 for a free quote." },
+      { type: 'callout', text: "Segura's Towing has been serving Inglewood since 2006 with upfront pricing and 4.9-star reviews. Call (310) 490-0246 for a free quote." },
       { type: 'h2', text: 'Save a Number Before You Need It' },
       { type: 'p', text: "The best time to find a towing company is before you need one. Save a trusted number in your phone. When you're stranded at midnight on the freeway, you'll be glad you did." },
     ],

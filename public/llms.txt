@@ -1,11 +1,11 @@
 # Segura's Towing
 
-> Family-owned 24/7 towing and roadside assistance based in Inglewood, CA. Serving Inglewood, the South Bay, and South LA since 2010 with a 15-30 minute average response time, transparent upfront pricing, and a modern flatbed fleet.
+> Family-owned 24/7 towing and roadside assistance based in Inglewood, CA. Serving Inglewood, the South Bay, and South LA since 2006 with a 15-30 minute average response time, transparent upfront pricing, and a modern flatbed fleet.
 
 ## Business Information
 
 - **Name:** Segura's Towing
-- **Founded:** 2010
+- **Founded:** 2006
 - **Type:** Towing service, Automotive business, Local business
 - **Phone:** (310) 490-0246
 - **Phone (E.164):** +13104900246
@@ -30,6 +30,11 @@ Segura's Towing is a family-owned tow truck company in Inglewood, California. We
 - [Lockout Service](https://segurastowing.com/services/lockout-service): Damage-free car unlock service. Professional tools, no broken windows or scratched paint.
 - [Jump Start](https://segurastowing.com/services/jump-start): Dead battery jump start service. Back on the road in minutes — 24/7 availability.
 - [Accident Recovery](https://segurastowing.com/services/accident-recovery): Professional accident scene vehicle recovery. We coordinate with insurance and law enforcement.
+- [Motorcycle Towing](https://segurastowing.com/services/motorcycle-towing): Specialized motorcycle transport with soft straps, wheel chocks, and flatbed loading. Harleys, sportbikes, cruisers, scooters, and trikes.
+- [Fuel Delivery](https://segurastowing.com/services/fuel-delivery): Out of gas? We deliver gas or diesel directly to your location 24/7. Enough fuel to reach the nearest station — no tow required.
+- [Flat Tire Change](https://segurastowing.com/services/tire-change): Mobile flat tire change service with hydraulic jack and impact gun. Freeway-safe. Spare swap or tow to a tire shop.
+- [Battery Installation](https://segurastowing.com/services/battery-installation): Same-day mobile battery delivery and installation. Free charging-system test, manufacturer warranty, old battery recycling.
+- [Winch-Out Service](https://segurastowing.com/services/winching): 12,000-lb winch recovery for vehicles stuck in mud, sand, ditches, or off the road. Damage assessment before every pull.
 
 ## Service Areas (with response times)
 

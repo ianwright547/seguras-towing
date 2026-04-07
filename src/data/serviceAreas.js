@@ -6,7 +6,7 @@ export const serviceAreas = [
     responseTime: '10-15 min',
     zip: '90301, 90302, 90303, 90304, 90305',
     distance: 'HQ',
-    tagline: "Inglewood's hometown towing service since 2010.",
+    tagline: "Inglewood's hometown towing service since 2006.",
     intro:
       "Segura's Towing is based right here in Inglewood on W 108th St. As a hometown business, we know every street, every shortcut, and every neighborhood. When you call us from anywhere in Inglewood, we are usually less than 15 minutes away.",
     neighborhoods: [

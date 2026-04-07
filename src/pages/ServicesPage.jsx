@@ -9,7 +9,7 @@ export default function ServicesPage() {
     <>
       <SEOHead
         title="Our Services"
-        description="Segura's Towing offers 24/7 emergency towing, flatbed towing, roadside assistance, lockout service, jump starts, and accident recovery in Inglewood, CA and the South Bay."
+        description="Segura's Towing offers 24/7 emergency towing, flatbed, roadside assistance, lockouts, jump starts, accident recovery, motorcycle towing, fuel delivery, tire change, battery installation, and winch-out in Inglewood, CA."
         canonical="/services"
       />
 

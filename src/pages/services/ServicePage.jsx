@@ -1,5 +1,6 @@
 import { Phone, ArrowRight, CheckCircle, Shield, Loader2 } from 'lucide-react';
 import SEOHead from '../../components/ui/SEOHead';
+import Breadcrumbs from '../../components/ui/Breadcrumbs';
 import { PHONE_HREF, PHONE_NUMBER } from '../../components/ui/PhoneLink';
 import { useFormSubmit } from '../../hooks/useFormSubmit';
 
@@ -109,6 +110,13 @@ export default function ServicePage({ service }) {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs
+        items={[
+          { label: 'Services', to: '/services' },
+          { label: service.title },
+        ]}
+      />
 
       {/* ── Features SEO Grid ── */}
       <section className="bg-zinc-100 border-b-[8px] border-zinc-200 py-20 sm:py-28">

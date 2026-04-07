@@ -3,6 +3,7 @@ import { ArrowLeft, Clock, Tag, Phone } from 'lucide-react';
 import { getBlogBySlug, blogPosts } from '../../data/blogPosts';
 import { PHONE_HREF, PHONE_NUMBER } from '../../components/ui/PhoneLink';
 import SEOHead from '../../components/ui/SEOHead';
+import Breadcrumbs from '../../components/ui/Breadcrumbs';
 
 function formatDate(dateStr) {
   const date = new Date(dateStr + 'T00:00:00');
@@ -124,6 +125,13 @@ export default function BlogPost() {
           </h1>
         </div>
       </section>
+
+      <Breadcrumbs
+        items={[
+          { label: 'Blog', to: '/blog' },
+          { label: post.title },
+        ]}
+      />
 
       <section className="bg-zinc-100 py-16 px-6">
         <div className="max-w-[1000px] mx-auto bg-white border-4 border-brand-dark p-8 md:p-16 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
