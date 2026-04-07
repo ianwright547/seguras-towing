@@ -65,8 +65,9 @@ export default function Services() {
                     <Link
                       to={`/services/${service.slug}`}
                       className="w-full text-center bg-brand-dark hover:bg-black text-white font-bold uppercase tracking-wide py-3.5 border-b-4 border-stone-800 active:border-b-0 active:translate-y-1 transition-all"
+                      aria-label={`Learn more about ${service.title} in Inglewood`}
                     >
-                      Learn More
+                      {service.title} Details
                     </Link>
                   </div>
                 </div>

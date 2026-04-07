@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { MapPin, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MapPin, Phone, ArrowRight } from 'lucide-react';
 import { serviceAreas } from '../../data/serviceAreas';
 import { PHONE_HREF, PHONE_NUMBER } from '../ui/PhoneLink';
 
@@ -110,9 +111,38 @@ export default function ServiceArea() {
             <div className="mt-6 pt-5 border-t border-black/[0.08] flex flex-col sm:flex-row sm:items-center gap-3 text-sm text-text-secondary">
               <span className="font-bold text-text-primary">Main Office</span>
               <span className="hidden sm:block w-1 h-1 rounded-full bg-black/20" />
-              <span>Inglewood, CA</span>
+              <span>3519 W 108th St, Inglewood, CA 90303</span>
             </div>
           </div>
+        </div>
+
+        {/* ── City pages directory (real internal links for SEO) ── */}
+        <div className="mt-14 pt-10 border-t-2 border-black/[0.08]">
+          <h3 className="text-2xl md:text-3xl font-extrabold text-text-primary tracking-tight mb-2">
+            Explore Towing By City
+          </h3>
+          <p className="text-text-secondary mb-6 max-w-2xl">
+            Pick your city below for local response times, neighborhoods we cover, and our most-requested services in your area.
+          </p>
+          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {serviceAreas.map((area) => (
+              <li key={area.slug}>
+                <Link
+                  to={`/service-areas/${area.slug}`}
+                  aria-label={`24/7 towing in ${area.name}, CA — response time ${area.responseTime}`}
+                  className="group flex items-center justify-between gap-2 px-4 py-3 rounded-lg bg-white border border-black/[0.08] hover:border-brand-blue hover:bg-brand-blue/[0.04] transition-all"
+                >
+                  <span className="flex items-center gap-2">
+                    <MapPin size={14} className="text-brand-blue shrink-0" />
+                    <span className="font-bold text-text-primary text-sm">
+                      Towing in {area.name}
+                    </span>
+                  </span>
+                  <ArrowRight size={14} className="text-text-secondary group-hover:text-brand-blue group-hover:translate-x-0.5 transition-all" />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

@@ -30,7 +30,7 @@ export default function ServiceAreasPage() {
   return (
     <>
       <SEOHead
-        title="Service Areas"
+        title="Towing Service Areas in Inglewood & the South Bay"
         description="Segura's Towing serves Inglewood, Hawthorne, Lennox, Gardena, Lawndale, El Segundo, LAX, and all of South LA. 10-30 minute response times. Call (310) 490-0246."
         canonical="/service-areas"
       />
@@ -41,6 +41,10 @@ export default function ServiceAreasPage() {
           <img
             src="/images/real-tow-19.jpeg"
             alt="Segura's tow truck serving the South Bay"
+            width="1920"
+            height="1080"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover opacity-30 mix-blend-overlay"
           />
         </div>
@@ -49,7 +53,7 @@ export default function ServiceAreasPage() {
             <div className="flex items-center gap-2"><MapPin size={16} /> Coverage Zone</div>
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase mb-4">
-            Towing Service Areas
+            Towing Service Areas in Inglewood & the South Bay
           </h1>
           <p className="text-lg md:text-xl text-stone-300 font-bold max-w-2xl mx-auto uppercase tracking-wide">
             From Inglewood to the South Bay, we have you covered. Fast response times across 16+ neighborhoods.
@@ -63,6 +67,43 @@ export default function ServiceAreasPage() {
           <div className="flex items-center gap-3"><span className="w-4 h-4 bg-green-500 border-2 border-brand-dark shadow-[2px_2px_0_0_rgba(0,0,0,1)]"></span> Primary (10 to 15 Min)</div>
           <div className="flex items-center gap-3"><span className="w-4 h-4 bg-blue-500 border-2 border-brand-dark shadow-[2px_2px_0_0_rgba(0,0,0,1)]"></span> Nearby (15 to 20 Min)</div>
           <div className="flex items-center gap-3"><span className="w-4 h-4 bg-amber-500 border-2 border-brand-dark shadow-[2px_2px_0_0_rgba(0,0,0,1)]"></span> Extended (20 to 30 Min)</div>
+        </div>
+      </section>
+
+      {/* Intro / About our coverage */}
+      <section className="bg-white border-b-[8px] border-zinc-200 py-16 md:py-20 px-6">
+        <div className="max-w-[1100px] mx-auto">
+          <span className="inline-block bg-brand-dark text-white text-xs font-black uppercase tracking-widest px-4 py-1 mb-4">Where We Tow</span>
+          <h2 className="text-3xl md:text-5xl font-black text-brand-dark uppercase tracking-tighter mb-6">
+            Local Towing Across Inglewood, the South Bay & the LAX Area
+          </h2>
+          <div className="grid md:grid-cols-2 gap-10 text-stone-700 font-medium leading-relaxed text-lg">
+            <p>
+              Segura's Towing is dispatched from <strong>3519 W 108th St in Inglewood</strong>, which puts our trucks within a 15-30 minute drive of every neighborhood we cover. Because we're a hometown shop and not a national franchise, our drivers know the surface streets, the freeway shortcuts off the I-405, the I-105, and the I-110, and the fastest way to reach you when traffic backs up around SoFi Stadium, the Forum, or LAX.
+            </p>
+            <p>
+              We tow daily across <strong>Hawthorne, Lennox, Westchester, Ladera Heights, View Park, Hyde Park, Gardena, Lawndale, El Segundo, the LAX area, South LA, Culver City, Manhattan Beach, Redondo Beach, and Torrance</strong>. Whether you're stranded on the freeway shoulder, locked out in a parking lot, or dealing with a dead battery in your driveway, you get the same family-owned service no matter which city you're calling from.
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-zinc-100 border-4 border-brand-dark p-5 text-center shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+              <div className="text-3xl font-black text-brand-orange">16+</div>
+              <div className="text-xs font-black uppercase tracking-widest text-brand-dark mt-1">Cities Covered</div>
+            </div>
+            <div className="bg-zinc-100 border-4 border-brand-dark p-5 text-center shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+              <div className="text-3xl font-black text-brand-orange">10-30</div>
+              <div className="text-xs font-black uppercase tracking-widest text-brand-dark mt-1">Min ETA</div>
+            </div>
+            <div className="bg-zinc-100 border-4 border-brand-dark p-5 text-center shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+              <div className="text-3xl font-black text-brand-orange">24/7</div>
+              <div className="text-xs font-black uppercase tracking-widest text-brand-dark mt-1">Dispatch</div>
+            </div>
+            <div className="bg-zinc-100 border-4 border-brand-dark p-5 text-center shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+              <div className="text-3xl font-black text-brand-orange">2006</div>
+              <div className="text-xs font-black uppercase tracking-widest text-brand-dark mt-1">Family-Owned Since</div>
+            </div>
+          </div>
         </div>
       </section>
 

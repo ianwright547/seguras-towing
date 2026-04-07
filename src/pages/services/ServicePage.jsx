@@ -1,4 +1,5 @@
-import { Phone, ArrowRight, CheckCircle, Shield, Loader2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Phone, ArrowRight, CheckCircle, Shield, Loader2, MapPin } from 'lucide-react';
 import SEOHead from '../../components/ui/SEOHead';
 import Breadcrumbs from '../../components/ui/Breadcrumbs';
 import { PHONE_HREF, PHONE_NUMBER } from '../../components/ui/PhoneLink';
@@ -13,6 +14,32 @@ export default function ServicePage({ service }) {
     servicePageTitle: service.title,
   });
 
+  // Per-page FAQPage JSON-LD (eligible for FAQ rich results in Google)
+  const faqJsonLd = service.faqs && service.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: service.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  } : null;
+
+  // Top cities to cross-link from each service page (helps internal PageRank flow)
+  const topCities = [
+    { slug: 'inglewood', name: 'Inglewood' },
+    { slug: 'hawthorne', name: 'Hawthorne' },
+    { slug: 'westchester', name: 'Westchester' },
+    { slug: 'lax-area', name: 'LAX Area' },
+    { slug: 'el-segundo', name: 'El Segundo' },
+    { slug: 'culver-city', name: 'Culver City' },
+    { slug: 'manhattan-beach', name: 'Manhattan Beach' },
+    { slug: 'torrance', name: 'Torrance' },
+  ];
+
   return (
     <>
       <SEOHead
@@ -23,12 +50,24 @@ export default function ServicePage({ service }) {
         ogImageAlt={`${service.title} by Segura's Towing in Inglewood, CA`}
       />
 
+      {/* ── Per-page FAQ JSON-LD for rich results ── */}
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
+
       {/* ── Landing Page Style Hero ── */}
       <section className="relative bg-brand-dark pt-28 pb-16 lg:pt-32 lg:pb-20 border-b-[12px] border-brand-orange">
         <div className="absolute inset-0 z-0 bg-brand-dark">
           <img
             src={service.heroPhoto}
-            alt={service.title}
+            alt={`${service.title} by Segura's Towing in Inglewood, CA`}
+            width="1920"
+            height="1080"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover opacity-30 mix-blend-overlay"
           />
           <div className="absolute inset-0 bg-brand-dark/80 mix-blend-multiply" />
@@ -141,6 +180,96 @@ export default function ServicePage({ service }) {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Process / How It Works ── */}
+      {service.process && service.process.length > 0 && (
+        <section className="bg-white border-b-[8px] border-zinc-200 py-20 sm:py-28">
+          <div className="max-w-[1400px] mx-auto px-6">
+            <div className="mb-14 text-center">
+              <span className="inline-block bg-brand-orange text-white text-sm font-black uppercase tracking-widest px-4 py-1 mb-4 border-2 border-brand-dark">How It Works</span>
+              <h2 className="text-4xl sm:text-6xl font-black text-brand-dark uppercase tracking-tighter">
+                Our {service.title} Process
+              </h2>
+              <p className="mt-4 text-lg text-stone-600 font-bold max-w-2xl mx-auto">
+                Four simple steps from your call to your vehicle being safely handled.
+              </p>
+            </div>
+
+            <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {service.process.map((step, i) => (
+                <li key={i} className="relative bg-zinc-100 border-4 border-brand-dark p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                  <div className="absolute -top-5 -left-5 w-12 h-12 bg-brand-orange text-white border-4 border-brand-dark flex items-center justify-center text-2xl font-black shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+                    {i + 1}
+                  </div>
+                  <h3 className="text-xl font-black text-brand-dark uppercase tracking-tight mt-3 mb-2">{step.step}</h3>
+                  <p className="text-stone-600 font-bold leading-relaxed text-sm">{step.desc}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      )}
+
+      {/* ── FAQs (also rendered as FAQPage JSON-LD above) ── */}
+      {service.faqs && service.faqs.length > 0 && (
+        <section className="bg-zinc-100 border-b-[8px] border-zinc-200 py-20 sm:py-28">
+          <div className="max-w-[1000px] mx-auto px-6">
+            <div className="mb-12">
+              <span className="inline-block bg-brand-dark text-white text-sm font-black uppercase tracking-widest px-4 py-1 mb-4">FAQ</span>
+              <h2 className="text-4xl sm:text-6xl font-black text-brand-dark uppercase tracking-tighter">
+                {service.title} Questions, Answered
+              </h2>
+              <p className="mt-4 text-lg text-stone-600 font-bold max-w-2xl">
+                Most common questions we get about {service.title.toLowerCase()} in Inglewood and the South Bay.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {service.faqs.map((faq, i) => (
+                <details key={i} className="group bg-white border-4 border-brand-dark shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] open:shadow-[8px_8px_0px_0px_rgba(232,114,12,1)] transition-shadow">
+                  <summary className="cursor-pointer list-none flex items-center justify-between gap-4 p-6 select-none">
+                    <h3 className="text-base sm:text-lg font-black text-brand-dark uppercase tracking-tight pr-2">
+                      {faq.q}
+                    </h3>
+                    <span aria-hidden="true" className="flex-shrink-0 w-9 h-9 bg-brand-orange text-white border-2 border-brand-dark flex items-center justify-center font-black text-xl group-open:rotate-45 transition-transform">+</span>
+                  </summary>
+                  <div className="px-6 pb-6 -mt-2">
+                    <p className="text-stone-700 font-medium leading-relaxed">{faq.a}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Cities We Serve (internal linking + local relevance) ── */}
+      <section className="bg-white border-b-[8px] border-zinc-200 py-16 sm:py-20">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="mb-10 text-center">
+            <span className="inline-block bg-brand-dark text-white text-xs font-black uppercase tracking-widest px-4 py-1 mb-4">Service Areas</span>
+            <h2 className="text-3xl sm:text-5xl font-black text-brand-dark uppercase tracking-tighter">
+              {service.title} Across the South Bay
+            </h2>
+            <p className="mt-4 text-base text-stone-600 font-bold max-w-2xl mx-auto">
+              We dispatch from Inglewood and reach every nearby city fast. Click any city below for local response times and coverage details.
+            </p>
+          </div>
+          <ul className="flex flex-wrap justify-center gap-3">
+            {topCities.map((city) => (
+              <li key={city.slug}>
+                <Link
+                  to={`/service-areas/${city.slug}`}
+                  className="inline-flex items-center gap-2 bg-zinc-100 hover:bg-brand-orange hover:text-white text-brand-dark font-black uppercase tracking-widest text-sm px-4 py-2 border-2 border-brand-dark transition-colors"
+                >
+                  <MapPin size={14} />
+                  {service.title} in {city.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

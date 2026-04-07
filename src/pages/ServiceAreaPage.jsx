@@ -43,6 +43,10 @@ export default function ServiceAreaPage() {
           <img
             src="/images/real-tow-19.jpeg"
             alt={`Segura's Towing serving ${area.name}, CA`}
+            width="1920"
+            height="1080"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover opacity-30 mix-blend-overlay"
           />
           <div className="absolute inset-0 bg-brand-dark/80 mix-blend-multiply" />

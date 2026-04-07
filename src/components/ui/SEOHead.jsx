@@ -6,9 +6,16 @@ const DEFAULT_OG_IMAGE_ALT = "Segura's Towing truck - 24/7 Towing Service in Ing
 
 export default function SEOHead({ title, description, canonical, ogImage, ogImageAlt }) {
   useEffect(() => {
-    document.title = title
-      ? `${title} | Segura's Towing | Inglewood, CA`
-      : "Segura's Towing | 24/7 Towing Service in Inglewood, CA | (310) 490-0246";
+    // Build the title — only append " | Segura's Towing" if title doesn't already include the brand.
+    // Don't double-append "Inglewood, CA" if it's already in the page title.
+    const buildFullTitle = (t) => {
+      if (!t) return "Segura's Towing | 24/7 Towing in Inglewood, CA";
+      const lower = t.toLowerCase();
+      const hasBrand = lower.includes("segura");
+      return hasBrand ? t : `${t} | Segura's Towing`;
+    };
+
+    document.title = buildFullTitle(title);
 
     const setMeta = (name, content) => {
       let el = document.querySelector(`meta[name="${name}"]`);
@@ -36,7 +43,7 @@ export default function SEOHead({ title, description, canonical, ogImage, ogImag
       setMeta('twitter:description', description);
     }
     if (title) {
-      const fullTitle = `${title} | Segura's Towing`;
+      const fullTitle = buildFullTitle(title);
       setOG('og:title', fullTitle);
       setMeta('twitter:title', fullTitle);
     }

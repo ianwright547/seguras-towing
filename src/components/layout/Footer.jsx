@@ -70,17 +70,21 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Location + hours */}
+          {/* Location + hours (NAP — schema.org PostalAddress) */}
           <div className="md:col-span-3">
             <span className="text-xs font-black text-brand-orange uppercase tracking-widest mb-6 block">Location</span>
             <div className="space-y-6">
-              <div className="bg-zinc-900 border-2 border-zinc-800 p-4 flex items-start gap-4">
-                <MapPin size={24} className="text-brand-orange shrink-0" strokeWidth={2.5} />
+              <address className="not-italic bg-zinc-900 border-2 border-zinc-800 p-4 flex items-start gap-4" itemScope itemType="https://schema.org/PostalAddress">
+                <MapPin size={24} className="text-brand-orange shrink-0 mt-0.5" strokeWidth={2.5} />
                 <div>
-                  <p className="text-sm text-white font-black uppercase tracking-tight">Inglewood, CA</p>
-                  <p className="text-sm text-zinc-400 font-bold uppercase tracking-wide mt-1">Ready for Dispatch</p>
+                  <p className="text-sm text-white font-black uppercase tracking-tight">Segura's Towing</p>
+                  <p className="text-sm text-zinc-300 font-bold tracking-tight mt-1" itemProp="streetAddress">3519 W 108th St</p>
+                  <p className="text-sm text-zinc-300 font-bold tracking-tight">
+                    <span itemProp="addressLocality">Inglewood</span>, <span itemProp="addressRegion">CA</span> <span itemProp="postalCode">90303</span>
+                  </p>
+                  <p className="text-xs text-zinc-500 font-bold uppercase tracking-wide mt-2">Ready for Dispatch</p>
                 </div>
-              </div>
+              </address>
               <div className="bg-zinc-900 border-2 border-zinc-800 p-4 flex items-start gap-4">
                 <Clock size={24} className="text-brand-orange shrink-0" strokeWidth={2.5} />
                 <p className="text-sm text-white font-black uppercase tracking-tight mt-1">Open 24/7/365</p>

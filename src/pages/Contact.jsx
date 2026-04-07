@@ -13,10 +13,10 @@ const contactDetails = [
   },
   {
     icon: MapPin,
-    label: 'Location',
-    value: 'Inglewood, CA',
+    label: 'Address',
+    value: '3519 W 108th St',
     href: null,
-    note: 'Dispatching across the South Bay',
+    note: 'Inglewood, CA 90303',
   },
   {
     icon: Clock,
@@ -36,8 +36,8 @@ export default function Contact() {
   return (
     <>
       <SEOHead
-        title="Contact Us"
-        description="Contact Segura's Towing in Inglewood, CA. Call (310) 490-0246 for 24/7 towing and roadside assistance."
+        title="Contact Segura's Towing in Inglewood, CA"
+        description="Call Segura's Towing at (310) 490-0246 for 24/7 towing and roadside assistance in Inglewood and the South Bay. 3519 W 108th St, Inglewood, CA 90303. We answer every call."
         canonical="/contact"
       />
 
@@ -46,7 +46,11 @@ export default function Contact() {
         <div className="absolute inset-0 z-0 bg-brand-dark">
           <img
             src="/images/real-tow-1.jpeg"
-            alt="Contact Segura's Towing"
+            alt="Contact Segura's Towing in Inglewood, CA"
+            width="1920"
+            height="1080"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover opacity-30 mix-blend-overlay"
           />
         </div>
@@ -127,6 +131,24 @@ export default function Contact() {
                   We cover all of Inglewood, South LA, and the greater South Bay region. A truck is always nearby.
                 </p>
               </div>
+
+              {/* Visible NAP block (hCard / schema.org PostalAddress) */}
+              <address className="not-italic mt-8 bg-white border-4 border-brand-dark p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]" itemScope itemType="https://schema.org/LocalBusiness">
+                <span className="inline-block bg-brand-dark text-white text-xs font-black uppercase tracking-widest px-3 py-1 mb-4">Find Us</span>
+                <h3 className="text-2xl font-black text-brand-dark uppercase tracking-tight mb-4" itemProp="name">Segura's Towing</h3>
+                <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress" className="text-stone-700 font-bold text-lg leading-relaxed">
+                  <div itemProp="streetAddress">3519 W 108th St</div>
+                  <div>
+                    <span itemProp="addressLocality">Inglewood</span>, <span itemProp="addressRegion">CA</span> <span itemProp="postalCode">90303</span>
+                  </div>
+                  <div itemProp="addressCountry" className="sr-only">United States</div>
+                </div>
+                <div className="mt-4 pt-4 border-t-2 border-zinc-200">
+                  <a href={PHONE_HREF} itemProp="telephone" className="text-brand-orange font-black hover:text-brand-dark transition-colors text-lg">
+                    (310) 490-0246
+                  </a>
+                </div>
+              </address>
             </div>
 
             {/* Right: Quote Form */}

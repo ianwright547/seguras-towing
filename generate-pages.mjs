@@ -377,3 +377,85 @@ for (const page of pages) {
 }
 
 console.log(`\nDone — ${pages.length} route-specific HTML files generated.`);
+
+// ── Sitemap.xml — auto-generated with fresh lastmod every build ─────
+//
+// Includes the home page + every route in `pages`. Priority and changefreq
+// are tuned for a local services site (home > services/areas > blog).
+const today = new Date().toISOString().split('T')[0];
+
+function priorityFor(path) {
+  if (path === '/') return '1.0';
+  if (path === '/services' || path === '/service-areas' || path === '/contact') return '0.9';
+  if (path.startsWith('/services/')) return '0.85';
+  if (path.startsWith('/service-areas/')) return '0.85';
+  if (path === '/about') return '0.7';
+  if (path === '/blog') return '0.7';
+  if (path.startsWith('/blog/')) return '0.6';
+  return '0.5';
+}
+
+function changefreqFor(path) {
+  if (path === '/') return 'weekly';
+  if (path.startsWith('/blog')) return 'monthly';
+  return 'monthly';
+}
+
+const sitemapEntries = [
+  { path: '/', priority: '1.0', changefreq: 'weekly' },
+  ...pages.map((p) => ({
+    path: p.path,
+    priority: priorityFor(p.path),
+    changefreq: changefreqFor(p.path),
+  })),
+];
+
+const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapEntries
+  .map(
+    (e) => `  <url>
+    <loc>${SITE}${e.path}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${e.changefreq}</changefreq>
+    <priority>${e.priority}</priority>
+  </url>`
+  )
+  .join('\n')}
+</urlset>
+`;
+
+writeFileSync(resolve(distDir, 'sitemap.xml'), sitemapXml);
+console.log(`\u2713 sitemap.xml generated with ${sitemapEntries.length} URLs (lastmod: ${today})`);
+
+// ── 404.html — static fallback for unknown routes ──────────────────
+//
+// Netlify will serve this for any path not matched by a real file or
+// `/_redirects` rule. We rewrite the index.html template the same way as
+// the route pages above so the 404 has proper title/desc/canonical.
+{
+  const notFoundTitle = `Page Not Found (404) | ${BIZ}`;
+  const notFoundDesc = `The page you're looking for doesn't exist. Need a tow right now? Call ${BIZ} at ${PHONE} — 24/7 dispatch in Inglewood and the South Bay.`;
+  const notFoundCanonical = `${SITE}/404`;
+
+  let html = template;
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(notFoundTitle)}</title>`);
+  html = html.replace(/<meta name="description" content="[^"]*"/, `<meta name="description" content="${esc(notFoundDesc)}"`);
+  html = html.replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="${notFoundCanonical}"`);
+  html = html.replace(/<meta property="og:title" content="[^"]*"/, `<meta property="og:title" content="${esc(notFoundTitle)}"`);
+  html = html.replace(/<meta property="og:description" content="[^"]*"/, `<meta property="og:description" content="${esc(notFoundDesc)}"`);
+  html = html.replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${notFoundCanonical}"`);
+  html = html.replace(/<meta name="twitter:title" content="[^"]*"/, `<meta name="twitter:title" content="${esc(notFoundTitle)}"`);
+  html = html.replace(/<meta name="twitter:description" content="[^"]*"/, `<meta name="twitter:description" content="${esc(notFoundDesc)}"`);
+
+  // robots: noindex so we don't accidentally rank a 404
+  html = html.replace('</head>', `    <meta name="robots" content="noindex, follow" />\n  </head>`);
+
+  html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, noscriptBlock(
+    'Page Not Found',
+    `Sorry, that page doesn't exist. Try our <a href="/services">services</a>, <a href="/service-areas">service areas</a>, or <a href="/contact">contact us</a>.`
+  ));
+
+  writeFileSync(resolve(distDir, '404.html'), html);
+  console.log('\u2713 404.html generated');
+}

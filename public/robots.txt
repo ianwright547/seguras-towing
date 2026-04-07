@@ -84,8 +84,5 @@ Allow: /
 User-agent: Mistral-AI-User
 Allow: /
 
-# ── Sitemap & LLM context ──
+# ── Sitemap ──
 Sitemap: https://segurastowing.com/sitemap.xml
-
-# Crawl-delay (be kind to the server)
-Crawl-delay: 1

@@ -72,7 +72,11 @@ export default function BlogIndex() {
         <div className="absolute inset-0 z-0 bg-brand-dark">
           <img
             src="/images/truck-mustang-downtown.jpg"
-            alt="Blog Background"
+            alt="Segura's Towing blog — towing tips and roadside safety guides"
+            width="1920"
+            height="1080"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover opacity-30 mix-blend-overlay"
           />
         </div>

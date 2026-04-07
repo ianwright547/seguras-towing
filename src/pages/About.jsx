@@ -48,6 +48,10 @@ export default function About() {
           <img
             src="/images/real-tow-17.jpeg"
             alt="Segura's Towing flatbed truck on the road in Inglewood, CA"
+            width="1920"
+            height="1080"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover opacity-30 mix-blend-overlay"
           />
         </div>

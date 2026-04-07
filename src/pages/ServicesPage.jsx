@@ -8,8 +8,8 @@ export default function ServicesPage() {
   return (
     <>
       <SEOHead
-        title="Our Services"
-        description="Segura's Towing offers 24/7 emergency towing, flatbed, roadside assistance, lockouts, jump starts, accident recovery, motorcycle towing, fuel delivery, tire change, battery installation, and winch-out in Inglewood, CA."
+        title="Towing Services in Inglewood, CA"
+        description="Full list of Segura's Towing services in Inglewood: 24/7 emergency towing, flatbed, roadside assistance, lockouts, jump starts, fuel delivery, and more. Call (310) 490-0246."
         canonical="/services"
       />
 
@@ -19,6 +19,10 @@ export default function ServicesPage() {
           <img
             src="/images/real-tow-10.jpeg"
             alt="Segura's Towing fleet ready for service"
+            width="1920"
+            height="1080"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover opacity-30 mix-blend-overlay"
           />
         </div>
@@ -27,7 +31,7 @@ export default function ServicesPage() {
             <div className="flex items-center gap-2"><Wrench size={16} /> Full-Service Towing</div>
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase mb-4">
-            24/7 Towing Services
+            24/7 Towing Services in Inglewood, CA
           </h1>
           <p className="text-lg md:text-xl text-stone-300 font-bold max-w-2xl mx-auto uppercase tracking-wide">
             From emergency tows to roadside flat tire fixes, everything you need is handled by one team that never closes.

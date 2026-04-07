@@ -16,7 +16,10 @@ export default function Hero() {
           muted
           loop
           playsInline
+          preload="metadata"
           poster="/images/real-tow-10.jpeg"
+          width="1920"
+          height="1080"
           className="w-full h-full object-cover opacity-20 mix-blend-lighten"
         >
           <source src="/images/hero-video.mp4" type="video/mp4" />
