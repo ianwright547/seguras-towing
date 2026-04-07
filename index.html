@@ -44,22 +44,38 @@
     <!-- Fonts: Satoshi (self-hosted) -->
     <link rel="preload" href="/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- JSON-LD Structured Data: TowingService -->
+    <!-- JSON-LD Structured Data: TowingService + AutomotiveBusiness + LocalBusiness -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "TowingService",
+      "@type": ["TowingService", "AutomotiveBusiness", "LocalBusiness"],
       "@id": "https://segurastowing.com/#business",
       "name": "Segura's Towing",
-      "description": "Family-owned 24/7 towing and roadside assistance serving Inglewood, CA and surrounding areas since 2010. Fast response, upfront pricing, no hidden fees.",
+      "alternateName": ["Seguras Towing", "Segura Towing Inglewood"],
+      "description": "Family-owned 24/7 towing service in Inglewood, CA. Emergency towing, flatbed towing, roadside assistance, lockouts, jump starts, and accident recovery. 15-30 minute response across the South Bay since 2010. Upfront pricing, no hidden fees.",
+      "slogan": "Inglewood's hometown tow truck since 2010",
       "telephone": "+1-310-490-0246",
+      "email": "dispatch@segurastowing.com",
       "url": "https://segurastowing.com",
-      "logo": "https://segurastowing.com/favicon.svg",
-      "image": "https://segurastowing.com/images/truck-branded-side.jpg",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://segurastowing.com/favicon.svg",
+        "width": 512,
+        "height": 512
+      },
+      "image": [
+        "https://segurastowing.com/images/truck-branded-side.jpg",
+        "https://segurastowing.com/images/real-tow-19.jpeg",
+        "https://segurastowing.com/images/real-tow-23.jpeg"
+      ],
       "foundingDate": "2010",
+      "founder": {
+        "@type": "Person",
+        "name": "Segura Family"
+      },
       "priceRange": "$$",
       "currenciesAccepted": "USD",
-      "paymentAccepted": "Cash, Credit Card",
+      "paymentAccepted": ["Cash", "Credit Card"],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "3519 W 108th St",
@@ -73,34 +89,137 @@
         "latitude": 33.9617,
         "longitude": -118.3531
       },
+      "hasMap": "https://www.google.com/maps/search/?api=1&query=33.9617,-118.3531",
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
         "opens": "00:00",
         "closes": "23:59"
       },
+      "specialOpeningHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "description": "Open 24/7/365 including all holidays"
+      },
       "areaServed": [
         {"@type": "City", "name": "Inglewood", "sameAs": "https://en.wikipedia.org/wiki/Inglewood,_California"},
-        {"@type": "City", "name": "Hawthorne"},
-        {"@type": "City", "name": "Gardena"},
-        {"@type": "City", "name": "Lawndale"},
-        {"@type": "City", "name": "El Segundo"},
-        {"@type": "City", "name": "Manhattan Beach"},
-        {"@type": "City", "name": "Torrance"},
-        {"@type": "City", "name": "Culver City"},
-        "Lennox", "Westchester", "Ladera Heights", "South LA", "LAX Area"
+        {"@type": "City", "name": "Hawthorne", "sameAs": "https://en.wikipedia.org/wiki/Hawthorne,_California"},
+        {"@type": "City", "name": "Gardena", "sameAs": "https://en.wikipedia.org/wiki/Gardena,_California"},
+        {"@type": "City", "name": "Lawndale", "sameAs": "https://en.wikipedia.org/wiki/Lawndale,_California"},
+        {"@type": "City", "name": "El Segundo", "sameAs": "https://en.wikipedia.org/wiki/El_Segundo,_California"},
+        {"@type": "City", "name": "Manhattan Beach", "sameAs": "https://en.wikipedia.org/wiki/Manhattan_Beach,_California"},
+        {"@type": "City", "name": "Redondo Beach", "sameAs": "https://en.wikipedia.org/wiki/Redondo_Beach,_California"},
+        {"@type": "City", "name": "Torrance", "sameAs": "https://en.wikipedia.org/wiki/Torrance,_California"},
+        {"@type": "City", "name": "Culver City", "sameAs": "https://en.wikipedia.org/wiki/Culver_City,_California"},
+        {"@type": "Place", "name": "Lennox, CA"},
+        {"@type": "Place", "name": "Westchester, Los Angeles"},
+        {"@type": "Place", "name": "Ladera Heights, CA"},
+        {"@type": "Place", "name": "View Park, CA"},
+        {"@type": "Place", "name": "Hyde Park, Los Angeles"},
+        {"@type": "Place", "name": "South Los Angeles"},
+        {"@type": "Place", "name": "LAX Airport Area"}
+      ],
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 33.9617,
+          "longitude": -118.3531
+        },
+        "geoRadius": "16000"
+      },
+      "knowsAbout": [
+        "Emergency towing",
+        "Flatbed towing",
+        "Wheel-lift towing",
+        "Roadside assistance",
+        "Car lockout service",
+        "Battery jump start",
+        "Fuel delivery",
+        "Tire change",
+        "Accident recovery",
+        "Heavy-duty towing",
+        "Motorcycle towing",
+        "Luxury vehicle transport",
+        "Long-distance towing"
+      ],
+      "makesOffer": [
+        {"@type": "Offer", "name": "24/7 Emergency Towing in Inglewood, CA", "priceCurrency": "USD", "url": "https://segurastowing.com/services/emergency-towing"},
+        {"@type": "Offer", "name": "Flatbed Towing in Inglewood, CA", "priceCurrency": "USD", "url": "https://segurastowing.com/services/flatbed-towing"},
+        {"@type": "Offer", "name": "Roadside Assistance in Inglewood, CA", "priceCurrency": "USD", "url": "https://segurastowing.com/services/roadside-assistance"},
+        {"@type": "Offer", "name": "Lockout Service in Inglewood, CA", "priceCurrency": "USD", "url": "https://segurastowing.com/services/lockout-service"},
+        {"@type": "Offer", "name": "Jump Start Service in Inglewood, CA", "priceCurrency": "USD", "url": "https://segurastowing.com/services/jump-start"},
+        {"@type": "Offer", "name": "Accident Recovery in Inglewood, CA", "priceCurrency": "USD", "url": "https://segurastowing.com/services/accident-recovery"}
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Towing Services",
+        "name": "Towing & Roadside Services in Inglewood, CA",
         "itemListElement": [
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Emergency Towing", "url": "https://segurastowing.com/services/emergency-towing"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Flatbed Towing", "url": "https://segurastowing.com/services/flatbed-towing"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Roadside Assistance", "url": "https://segurastowing.com/services/roadside-assistance"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Lockout Service", "url": "https://segurastowing.com/services/lockout-service"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Jump Start", "url": "https://segurastowing.com/services/jump-start"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Accident Recovery", "url": "https://segurastowing.com/services/accident-recovery"}}
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Emergency Towing", "serviceType": "Emergency Towing", "url": "https://segurastowing.com/services/emergency-towing"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Flatbed Towing", "serviceType": "Flatbed Towing", "url": "https://segurastowing.com/services/flatbed-towing"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Roadside Assistance", "serviceType": "Roadside Assistance", "url": "https://segurastowing.com/services/roadside-assistance"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Lockout Service", "serviceType": "Lockout Service", "url": "https://segurastowing.com/services/lockout-service"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Jump Start", "serviceType": "Jump Start", "url": "https://segurastowing.com/services/jump-start"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Accident Recovery", "serviceType": "Accident Recovery", "url": "https://segurastowing.com/services/accident-recovery"}}
         ]
+      },
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "tel:+13104900246",
+          "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
+        },
+        "result": {
+          "@type": "Reservation",
+          "name": "24/7 Tow Truck Dispatch"
+        }
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: WebSite (sitelinks searchbox eligible) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://segurastowing.com/#website",
+      "url": "https://segurastowing.com",
+      "name": "Segura's Towing",
+      "publisher": {"@id": "https://segurastowing.com/#business"},
+      "inLanguage": "en-US"
+    }
+    </script>
+
+    <!-- JSON-LD: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://segurastowing.com/#organization",
+      "name": "Segura's Towing",
+      "url": "https://segurastowing.com",
+      "logo": "https://segurastowing.com/favicon.svg",
+      "telephone": "+1-310-490-0246",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "3519 W 108th St",
+        "addressLocality": "Inglewood",
+        "addressRegion": "CA",
+        "postalCode": "90303",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-310-490-0246",
+        "contactType": "emergency dispatch",
+        "areaServed": "US-CA",
+        "availableLanguage": ["English", "Spanish"],
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
       }
     }
     </script>
