@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import ServiceAreasPage from './pages/ServiceAreasPage';
+import ServiceAreaPage from './pages/ServiceAreaPage';
 import EmergencyTowing from './pages/services/EmergencyTowing';
 import FlatbedTowing from './pages/services/FlatbedTowing';
 import RoadsideAssistance from './pages/services/RoadsideAssistance';
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/service-areas" element={<ServiceAreasPage />} />
+          <Route path="/service-areas/:slug" element={<ServiceAreaPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/emergency-towing" element={<EmergencyTowing />} />
           <Route path="/services/flatbed-towing" element={<FlatbedTowing />} />

@@ -9,6 +9,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { serviceAreas } from './src/data/serviceAreas.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = resolve(__dirname, 'dist');
@@ -174,6 +175,66 @@ const pages = [
     noscriptHeading: 'Flatbed vs. Wheel-Lift Towing: Which Is Better?',
     noscriptBody: 'A comparison of the two most common towing methods and when each is the right choice for your vehicle.',
   },
+
+  // ─ Service area pages (one per city) ─
+  ...serviceAreas.map((area) => ({
+    path: `/service-areas/${area.slug}`,
+    title: `Towing in ${area.name}, CA | ${area.responseTime} ETA | ${BIZ}`,
+    desc: `Need a tow truck in ${area.name}? ${BIZ} responds in ${area.responseTime} with 24/7 emergency dispatch, flatbed towing, and roadside assistance. Call ${PHONE}.`,
+    ogImage: '/images/truck-branded-side.jpg',
+    ogImageAlt: `Segura's Towing serving ${area.name}, CA`,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      '@id': `${SITE}/service-areas/${area.slug}#business`,
+      name: `${BIZ} - ${area.name}`,
+      description: `24/7 towing and roadside assistance in ${area.name}, CA. ${area.responseTime} average response time. ${area.tagline}`,
+      telephone: '+1-310-490-0246',
+      url: `${SITE}/service-areas/${area.slug}`,
+      image: `${SITE}/images/truck-branded-side.jpg`,
+      logo: `${SITE}/favicon.svg`,
+      priceRange: '$$',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '3519 W 108th St',
+        addressLocality: 'Inglewood',
+        addressRegion: 'CA',
+        postalCode: '90303',
+        addressCountry: 'US',
+      },
+      areaServed: {
+        '@type': 'City',
+        name: area.name,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: area.name,
+          addressRegion: 'CA',
+          postalCode: area.zip.split(',')[0].trim(),
+          addressCountry: 'US',
+        },
+      },
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '00:00',
+        closes: '23:59',
+      },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: `Towing Services in ${area.name}`,
+        itemListElement: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: `Emergency Towing in ${area.name}` } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: `Flatbed Towing in ${area.name}` } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: `Roadside Assistance in ${area.name}` } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: `Lockout Service in ${area.name}` } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: `Jump Start in ${area.name}` } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: `Accident Recovery in ${area.name}` } },
+        ],
+      },
+    },
+    noscriptHeading: `Towing in ${area.name}, CA - ${BIZ}`,
+    noscriptBody: `${area.intro} Average response time: ${area.responseTime}. Call ${PHONE} for 24/7 dispatch. We serve ${area.neighborhoods.slice(0, 5).join(', ')} and all of ${area.name}.`,
+  })),
 ];
 
 // ── Helpers ─────────────────────────────────────────────────────────

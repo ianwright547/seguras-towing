@@ -1,4 +1,5 @@
-import { Phone, MapPin, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
 import SEOHead from '../components/ui/SEOHead';
 import { PHONE_HREF, PHONE_NUMBER } from '../components/ui/PhoneLink';
 import { serviceAreas } from '../data/serviceAreas';
@@ -80,6 +81,12 @@ export default function ServiceAreasPage() {
                 <p className="text-stone-600 font-bold text-lg max-w-lg mb-6 leading-relaxed uppercase tracking-wide">
                   Our main coverage zone. We know every street and every neighborhood. A truck is always nearby.
                 </p>
+                <Link
+                  to={`/service-areas/${area.slug}`}
+                  className="inline-flex items-center gap-2 text-brand-dark hover:text-brand-orange font-black uppercase tracking-widest text-sm border-b-4 border-brand-orange pb-1 transition-colors"
+                >
+                  View {area.name} Page <ArrowRight size={16} strokeWidth={3} />
+                </Link>
               </div>
               <a
                 href={PHONE_HREF}
@@ -100,7 +107,7 @@ export default function ServiceAreasPage() {
               const isMed = parseInt(time) <= 20 && !isFast;
 
               return (
-                <div key={area.name} className="bg-white border-4 border-brand-dark p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
+                <div key={area.name} className="bg-white border-4 border-brand-dark p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform flex flex-col">
                   <div className="flex justify-between items-start mb-4">
                     <h4 className="font-black text-2xl text-brand-dark uppercase tracking-tight">{area.name}</h4>
                     <div className={`w-4 h-4 border-2 border-brand-dark shadow-[2px_2px_0_0_rgba(0,0,0,1)] shrink-0 ${isFast ? 'bg-green-500' : isMed ? 'bg-blue-500' : 'bg-amber-500'}`}></div>
@@ -109,11 +116,17 @@ export default function ServiceAreasPage() {
                     <Clock size={16} />
                     <span className="font-bold text-sm uppercase tracking-widest">{time || '15 to 30 min'}</span>
                   </div>
+                  <Link
+                    to={`/service-areas/${area.slug}`}
+                    className="w-full inline-flex items-center justify-center gap-2 bg-brand-dark hover:bg-brand-orange text-white font-black py-3 mb-3 border-2 border-brand-dark uppercase tracking-widest transition-colors text-sm"
+                  >
+                    View Page <ArrowRight size={16} strokeWidth={3} />
+                  </Link>
                   <a
                     href={PHONE_HREF}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-zinc-100 hover:bg-brand-orange hover:text-white text-brand-dark font-black py-4 border-2 border-brand-dark uppercase tracking-widest transition-colors"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-zinc-100 hover:bg-brand-orange hover:text-white text-brand-dark font-black py-3 border-2 border-brand-dark uppercase tracking-widest transition-colors text-sm mt-auto"
                   >
-                    <Phone size={18} /> Call Dispatch
+                    <Phone size={16} /> Call Dispatch
                   </a>
                 </div>
               );
